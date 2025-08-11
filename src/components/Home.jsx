@@ -11,7 +11,7 @@ const Home = () => {
           class="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
           style={{
             background:
-              "radial-gradient(600px circle at 0px 0px, rgba(29, 78, 216, 0.15), transparent 80%)",
+              "radial-gradient(600px circle at 0px 0px, rgba(255, 255, 255, 0.06), transparent 80%)",
           }}
         ></div>
         <div className="mx-auto min-h-screen max-w-[1350px] px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
@@ -30,6 +30,7 @@ const Home = () => {
                 <p className="mt-4 max-w-xs leading-normal">
                   I am Passionate about Web Development
                 </p>
+
                 <nav
                   className="nav hidden lg:block"
                   aria-label="In-page jump links"
@@ -71,7 +72,7 @@ const Home = () => {
                   </ul>
                 </nav>
               </div>
-              <ul class="flex items-center" aria-label="Social media">
+              <ul class="flex items-center mt-8" aria-label="Social media">
                 <li class="mr-5 text-xs shrink-0">
                   <a
                     class="block hover:text-zinc-200"
@@ -459,7 +460,7 @@ const Home = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                               aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://github.com/snykk/microservices-library-management"
+                              href="https://www.klaklik.com/"
                             >
                               <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                               <span>
@@ -574,7 +575,7 @@ const Home = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                               aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://github.com/snykk/microservices-library-management"
+                              href="https://test.movielandlido.com/"
                             >
                               <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                               <span>
@@ -663,7 +664,7 @@ const Home = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                               aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://github.com/snykk/microservices-library-management"
+                              href="https://github.com/ariskiflan/portfolio-aris"
                             >
                               <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                               <span>
@@ -732,7 +733,7 @@ const Home = () => {
                               target="_blank"
                               rel="noreferrer noopener"
                               aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://github.com/snykk/microservices-library-management"
+                              href="https://github.com/ariskiflan/fe-thread-app"
                             >
                               <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
                               <span>
