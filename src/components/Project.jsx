@@ -63,7 +63,7 @@ const Project = () => {
           <div className="mx-auto min-h-screen max-w-[1350px] px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
             <div className="lg:py-24">
               <Link
-                className="sr-top group mb-2 inline-flex items-center font-semibold leading-tight text-cyan-300"
+                className="sr-top group mb-2 inline-flex items-center font-semibold leading-tight "
                 to="/"
               >
                 <svg
