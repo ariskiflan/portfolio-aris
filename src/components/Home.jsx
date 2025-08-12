@@ -2,13 +2,51 @@ import Klaklik from "../assets/img/klaklik.png";
 import Movieland from "../assets/img/movieland.png";
 import Circle from "../assets/img/circle.png";
 import Portfolio from "../assets/img/portfolio.png";
+import { Link } from "react-router";
+
+import ScrollReveal from "scrollreveal";
+import React, { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    ScrollReveal().reveal(".sr-bottom", {
+      duration: 1000,
+      origin: "bottom",
+      distance: "50px",
+      easing: "ease-in-out",
+      reset: false, // true kalau mau efek muncul terus saat scroll balik atas
+    });
+
+    ScrollReveal().reveal(".sr-right", {
+      duration: 1000,
+      origin: "right",
+      distance: "50px",
+      easing: "ease-in-out",
+      reset: false, // true kalau mau efek muncul terus saat scroll balik atas
+    });
+
+    ScrollReveal().reveal(".sr-top", {
+      duration: 1000,
+      origin: "top",
+      distance: "50px",
+      easing: "ease-in-out",
+      reset: false, // true kalau mau efek muncul terus saat scroll balik atas
+    });
+
+    ScrollReveal().reveal(".sr-left", {
+      duration: 1000,
+      origin: "left",
+      distance: "50px",
+      easing: "ease-in-out",
+      reset: false, // true kalau mau efek muncul terus saat scroll balik atas
+    });
+  }, []);
+
   return (
     <>
       <body className="font-courier bg-zinc-900 leading-relaxed text-zinc-400 antialiased selection:bg-cyan-300 selection:text-cyan-900 relative">
         <div
-          class="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
+          className="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
           style={{
             background:
               "radial-gradient(600px circle at 0px 0px, rgba(255, 255, 255, 0.06), transparent 80%)",
@@ -18,16 +56,16 @@ const Home = () => {
           <div className="lg:flex lg:justify-between lg:gap-4">
             <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
               <div>
-                <h1 className="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+                <h1 className="sr-bottom text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
                   <a href="/">
                     <p>Aris Kiflan</p>
                     <p>Makarim</p>
                   </a>
                 </h1>
-                <h2 className="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+                <h2 className="sr-right mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
                   Frontend Developer
                 </h2>
-                <p className="mt-4 max-w-xs leading-normal">
+                <p className="sr-left mt-4 max-w-xs leading-normal">
                   I am Passionate about Web Development
                 </p>
 
@@ -42,7 +80,7 @@ const Home = () => {
                         href="#about"
                       >
                         <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-                        <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                        <span className="sr-bottom nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                           About
                         </span>
                       </a>
@@ -53,7 +91,7 @@ const Home = () => {
                         href="#experience"
                       >
                         <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-                        <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                        <span className="sr-bottom nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                           Experience
                         </span>
                       </a>
@@ -64,11 +102,22 @@ const Home = () => {
                         href="#projects"
                       >
                         <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-                        <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                        <span className="sr-bottom nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
                           Projects
                         </span>
                       </a>
                     </li>
+                    {/* <li>
+                      <a
+                        className="group flex items-center py-3 "
+                        href="#projects"
+                      >
+                        <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
+                        <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                          certificate
+                        </span>
+                      </a>
+                    </li> */}
                   </ul>
                 </nav>
               </div>
@@ -82,7 +131,7 @@ const Home = () => {
                     title="GitHub"
                     href="https://github.com/ariskiflan"
                   >
-                    <span class="sr-only">GitHub</span>
+                    <span className="sr-only">GitHub</span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -205,13 +254,13 @@ const Home = () => {
                 className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
               >
                 <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
                     About
                   </h2>
                 </div>
 
                 <div>
-                  <p class="mb-4">
+                  <p class="sr-right mb-4">
                     Passionate Frontend Developer with 1+ year of professional
                     experience and a Bachelor’s Degree in Computer Science.
                     Graduate of PT Dumbways Indonesia Teknologi Fullstack
@@ -223,18 +272,18 @@ const Home = () => {
                     team environment.
                   </p>
 
-                  <p>
+                  <p className="sr-left">
                     I am currently seeking opportunities to leverage my skills
                     in a dynamic and innovative company. If you are looking for
                     a dedicated and skilled Frontend Developer, please don't
                     hesitate to reach me out.
                   </p>
 
-                  <p>
+                  <p className="sr-right">
                     Here are a few technologies I’ve been working with recently:
                   </p>
 
-                  <ul class="grid grid-cols-2 gap-x-1 gap-y-0 p-0 mt-2 list-none overflow-hidden max-w-sm lg:max-w-md">
+                  <ul class="sr-left grid grid-cols-2 gap-x-1 gap-y-0 p-0 mt-2 list-none overflow-hidden max-w-sm lg:max-w-md">
                     <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
                       Javascript
                     </li>
@@ -262,14 +311,14 @@ const Home = () => {
                 className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
               >
                 <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
                     Experience
                   </h2>
                 </div>
 
                 <div>
                   <ol class="group/list">
-                    <li class="mb-12">
+                    <li class="sr-right mb-12">
                       <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
                         <header
@@ -346,7 +395,7 @@ const Home = () => {
                       </div>
                     </li>
 
-                    <li class="mb-12">
+                    <li class="sr-left mb-12">
                       <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
                         <header
@@ -406,9 +455,9 @@ const Home = () => {
                     </li>
                   </ol>
 
-                  <div class="mt-12">
+                  <div className="sr-top mt-12">
                     <a
-                      class="inline-flex items-baseline leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300 font-semibold group/link text-base"
+                      className="inline-flex items-baseline leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300 font-semibold group/link text-base"
                       target="_blank"
                       rel="noreferrer noopener"
                       aria-label="View Full Résumé (opens in a new tab)"
@@ -442,14 +491,14 @@ const Home = () => {
                 className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
               >
                 <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="text-sm font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
                     Projects
                   </h2>
                 </div>
 
                 <div>
                   <ul className="group/list">
-                    <li className="mb-12">
+                    <li className="sr-right mb-12">
                       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
@@ -564,7 +613,7 @@ const Home = () => {
                       </div>
                     </li>
 
-                    <li className="mb-12">
+                    <li className="sr-left mb-12">
                       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
@@ -653,7 +702,7 @@ const Home = () => {
                       </div>
                     </li>
 
-                    <li className="mb-12">
+                    {/* <li className="mb-12">
                       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
@@ -720,9 +769,9 @@ const Home = () => {
                           style={{ color: "transparent" }}
                         />
                       </div>
-                    </li>
+                    </li> */}
 
-                    <li className="mb-12">
+                    <li className="sr-right mb-12">
                       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
@@ -823,11 +872,41 @@ const Home = () => {
                       </div>
                     </li>
                   </ul>
+
+                  <div className="sr-top mt-12">
+                    <Link
+                      className="inline-flex items-center leading-tight text-zinc-200 font-semibold group"
+                      aria-label="View Full Project Archive"
+                      to="/project"
+                    >
+                      <span>
+                        <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none">
+                          View Full Project Archive
+                        </span>
+                        <span class="whitespace-nowrap">
+                          <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none"></span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            class="ml-1 inline-block h-4 w-4 rotate-[45deg] shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                        </span>
+                      </span>
+                    </Link>
+                  </div>
                 </div>
               </section>
 
               <section>
-                <div className=" scroll-pt-10 lg:scroll-pt-24 text-sm">
+                <div className="sr-bottom scroll-pt-10 lg:scroll-pt-24 text-sm">
                   <div className="relative transition-all opacity-100 text-zinc-300">
                     <div className="absolute -inset-x-4 -inset-y-4 z-0  rounded-lg transition motion-reduce:transition-none  block bg-black/20 shadow-[inset_0_1px_0_0_rgba(rgba(160, 188, 227, 1))] drop-shadow-xl"></div>
                     <p className="before:content-['“'] before:text-cyan-400 before:text-2xl before:mr-1 after:content-['”'] after:text-cyan-400 after:text-2xl after:ml-1">
@@ -839,15 +918,15 @@ const Home = () => {
                 </div>
 
                 <div className="text-center space-y-4 my-16 lg:my-20">
-                  <p className="text-gray text-xs md:text-sm">
+                  <p className="sr-top text-gray text-xs md:text-sm">
                     warm greetings from me:
                   </p>
-                  <h3 className="font-great-vibes text-2xl md:text-3xl lg:text-4xl inline-block border-b border-primary">
+                  <h3 className="sr-bottom font-great-vibes text-2xl md:text-3xl lg:text-4xl inline-block border-b border-primary">
                     ArisKiflan
                   </h3>
                 </div>
 
-                <footer className="max-w-lg pb-16 text-sm text-zinc-500 sm:pb-0">
+                <footer className="sr-bottom max-w-lg pb-16 text-sm text-zinc-500 sm:pb-0">
                   <p>
                     Inspired by{" "}
                     <a
