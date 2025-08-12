@@ -13,6 +13,14 @@ import { useEffect, useState } from "react";
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState("about");
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    setPos({
+      x: e.clientX + window.scrollX,
+      y: e.clientY + window.scrollY,
+    });
+  };
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -70,30 +78,33 @@ const Home = () => {
     <>
       <body className="font-courier bg-zinc-900 leading-relaxed text-zinc-400 antialiased selection:bg-cyan-300 selection:text-cyan-900 relative">
         <div
-          className="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
-          style={{
-            background:
-              "radial-gradient(600px circle at 0px 0px, rgba(255, 255, 255, 0.06), transparent 80%)",
-          }}
-        ></div>
-        <div className="mx-auto min-h-screen max-w-[1350px] px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-          <div className="lg:flex lg:justify-between lg:gap-4">
-            <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
-              <div>
-                <h1 className="sr-bottom text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
-                  <a href="/">
-                    <p>Aris Kiflan</p>
-                    <p>Makarim</p>
-                  </a>
-                </h1>
-                <h2 className="sr-right mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
-                  Frontend Developer
-                </h2>
-                <p className="sr-left mt-4 max-w-xs leading-normal">
-                  I am Passionate about Web Development
-                </p>
+          onMouseMove={handleMouseMove}
+          className="font-courier bg-zinc-900 leading-relaxed text-zinc-400 antialiased selection:bg-cyan-300 selection:text-cyan-900 relative"
+        >
+          <div
+            className="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"
+            style={{
+              background: `radial-gradient(600px circle at ${pos.x}px ${pos.y}px, rgba(255, 255, 255, 0.06), transparent 80%)`,
+            }}
+          ></div>
+          <div className="mx-auto min-h-screen max-w-[1350px] px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+            <div className="lg:flex lg:justify-between lg:gap-4">
+              <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
+                <div>
+                  <h1 className="sr-bottom text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+                    <a href="/">
+                      <p>Aris Kiflan</p>
+                      <p>Makarim</p>
+                    </a>
+                  </h1>
+                  <h2 className="sr-right mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+                    Frontend Developer
+                  </h2>
+                  <p className="sr-left mt-4 max-w-xs leading-normal">
+                    I am Passionate about Web Development
+                  </p>
 
-                {/* <nav
+                  {/* <nav
                   className="nav hidden lg:block"
                   aria-label="In-page jump links"
                 >
@@ -145,140 +156,140 @@ const Home = () => {
                   </ul>
                 </nav> */}
 
-                <nav
-                  className="nav hidden lg:block"
-                  aria-label="In-page jump links"
-                >
-                  <ul className="mt-16 w-max">
-                    <li>
-                      <a
-                        href="#about"
-                        className={`group flex items-center py-3 ${
-                          activeSection === "about" ? "active" : ""
-                        }`}
-                      >
-                        <span
-                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
-                            activeSection === "about"
-                              ? "w-16 bg-slate-200"
-                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
-                          }`}
-                        ></span>
-                        <span
-                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
-                            activeSection === "about"
-                              ? "text-slate-200"
-                              : "text-slate-500 group-hover:text-slate-200"
-                          }`}
-                        >
-                          About
-                        </span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#experience"
-                        className={`group flex items-center py-3 ${
-                          activeSection === "experience" ? "active" : ""
-                        }`}
-                      >
-                        <span
-                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
-                            activeSection === "experience"
-                              ? "w-16 bg-slate-200"
-                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
-                          }`}
-                        ></span>
-                        <span
-                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
-                            activeSection === "experience"
-                              ? "text-slate-200"
-                              : "text-slate-500 group-hover:text-slate-200"
-                          }`}
-                        >
-                          Experience
-                        </span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#projects"
-                        className={`group flex items-center py-3 ${
-                          activeSection === "projects" ? "active" : ""
-                        }`}
-                      >
-                        <span
-                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
-                            activeSection === "projects"
-                              ? "w-16 bg-slate-200"
-                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
-                          }`}
-                        ></span>
-                        <span
-                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
-                            activeSection === "projects"
-                              ? "text-slate-200"
-                              : "text-slate-500 group-hover:text-slate-200"
-                          }`}
-                        >
-                          Projects
-                        </span>
-                      </a>
-                    </li>
-
-                    <li>
-                      <a
-                        href="#certificate"
-                        className={`group flex items-center py-3 ${
-                          activeSection === "certificate" ? "active" : ""
-                        }`}
-                      >
-                        <span
-                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
-                            activeSection === "certificate"
-                              ? "w-16 bg-slate-200"
-                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
-                          }`}
-                        ></span>
-                        <span
-                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
-                            activeSection === "certificate"
-                              ? "text-slate-200"
-                              : "text-slate-500 group-hover:text-slate-200"
-                          }`}
-                        >
-                          Certificate
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-              <ul class="flex items-center mt-8" aria-label="Social media">
-                <li class="mr-5 text-xs shrink-0">
-                  <a
-                    class="block hover:text-zinc-200"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="GitHub"
-                    title="GitHub"
-                    href="https://github.com/ariskiflan"
+                  <nav
+                    className="nav hidden lg:block"
+                    aria-label="In-page jump links"
                   >
-                    <span className="sr-only">GitHub</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 16 16"
-                      fill="currentColor"
-                      class="h-6 w-6"
-                      aria-hidden="true"
+                    <ul className="mt-16 w-max">
+                      <li>
+                        <a
+                          href="#about"
+                          className={`group flex items-center py-3 ${
+                            activeSection === "about" ? "active" : ""
+                          }`}
+                        >
+                          <span
+                            className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                              activeSection === "about"
+                                ? "w-16 bg-slate-200"
+                                : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                            }`}
+                          ></span>
+                          <span
+                            className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                              activeSection === "about"
+                                ? "text-slate-200"
+                                : "text-slate-500 group-hover:text-slate-200"
+                            }`}
+                          >
+                            About
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          href="#experience"
+                          className={`group flex items-center py-3 ${
+                            activeSection === "experience" ? "active" : ""
+                          }`}
+                        >
+                          <span
+                            className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                              activeSection === "experience"
+                                ? "w-16 bg-slate-200"
+                                : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                            }`}
+                          ></span>
+                          <span
+                            className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                              activeSection === "experience"
+                                ? "text-slate-200"
+                                : "text-slate-500 group-hover:text-slate-200"
+                            }`}
+                          >
+                            Experience
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          href="#projects"
+                          className={`group flex items-center py-3 ${
+                            activeSection === "projects" ? "active" : ""
+                          }`}
+                        >
+                          <span
+                            className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                              activeSection === "projects"
+                                ? "w-16 bg-slate-200"
+                                : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                            }`}
+                          ></span>
+                          <span
+                            className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                              activeSection === "projects"
+                                ? "text-slate-200"
+                                : "text-slate-500 group-hover:text-slate-200"
+                            }`}
+                          >
+                            Projects
+                          </span>
+                        </a>
+                      </li>
+
+                      <li>
+                        <a
+                          href="#certificate"
+                          className={`group flex items-center py-3 ${
+                            activeSection === "certificate" ? "active" : ""
+                          }`}
+                        >
+                          <span
+                            className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                              activeSection === "certificate"
+                                ? "w-16 bg-slate-200"
+                                : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                            }`}
+                          ></span>
+                          <span
+                            className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                              activeSection === "certificate"
+                                ? "text-slate-200"
+                                : "text-slate-500 group-hover:text-slate-200"
+                            }`}
+                          >
+                            Certificate
+                          </span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <ul class="flex items-center mt-8" aria-label="Social media">
+                  <li class="mr-5 text-xs shrink-0">
+                    <a
+                      class="block hover:text-zinc-200"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="GitHub"
+                      title="GitHub"
+                      href="https://github.com/ariskiflan"
                     >
-                      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                    </svg>
-                  </a>
-                </li>
-                {/* <li class="mr-5 text-xs shrink-0">
+                      <span className="sr-only">GitHub</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        class="h-6 w-6"
+                        aria-hidden="true"
+                      >
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                      </svg>
+                    </a>
+                  </li>
+                  {/* <li class="mr-5 text-xs shrink-0">
                   <a
                     class="block hover:text-zinc-200"
                     target="_blank"
@@ -298,48 +309,48 @@ const Home = () => {
                     </svg>
                   </a>
                 </li> */}
-                <li class="mr-5 text-xs shrink-0">
-                  <a
-                    class="block hover:text-zinc-200"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="LinkedIn"
-                    title="LinkedIn"
-                    href="https://www.linkedin.com/in/ariskiflanm/"
-                  >
-                    <span class="sr-only">LinkedIn</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      class="h-6 w-6"
-                      aria-hidden="true"
+                  <li class="mr-5 text-xs shrink-0">
+                    <a
+                      class="block hover:text-zinc-200"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="LinkedIn"
+                      title="LinkedIn"
+                      href="https://www.linkedin.com/in/ariskiflanm/"
                     >
-                      <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
-                    </svg>
-                  </a>
-                </li>
-                <li class="mr-5 text-xs shrink-0">
-                  <a
-                    class="block hover:text-zinc-200"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Gmail"
-                    title="Gmail"
-                    href="mailto:ariskiflan98@gmail.com"
-                  >
-                    <span class="sr-only">Gmail</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="currentColor"
-                      viewBox="0 0 50 50"
+                      <span class="sr-only">LinkedIn</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="h-6 w-6"
+                        aria-hidden="true"
+                      >
+                        <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                      </svg>
+                    </a>
+                  </li>
+                  <li class="mr-5 text-xs shrink-0">
+                    <a
+                      class="block hover:text-zinc-200"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      aria-label="Gmail"
+                      title="Gmail"
+                      href="mailto:ariskiflan98@gmail.com"
                     >
-                      <path d="M12 23.403V23.39 10.389L11.88 10.3h-.01L9.14 8.28C7.47 7.04 5.09 7.1 3.61 8.56 2.62 9.54 2 10.9 2 12.41v3.602L12 23.403zM38 23.39v.013l10-7.391V12.41c0-1.49-.6-2.85-1.58-3.83-1.46-1.457-3.765-1.628-5.424-.403L38.12 10.3 38 10.389V23.39zM14 24.868l10.406 7.692c.353.261.836.261 1.189 0L36 24.868V11.867L25 20l-11-8.133V24.868zM38 25.889V41c0 .552.448 1 1 1h6.5c1.381 0 2.5-1.119 2.5-2.5V18.497L38 25.889zM12 25.889L2 18.497V39.5C2 40.881 3.119 42 4.5 42H11c.552 0 1-.448 1-1V25.889z"></path>
-                    </svg>
-                  </a>
-                </li>
-                {/* <li class="mr-5 text-xs shrink-0">
+                      <span class="sr-only">Gmail</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6"
+                        fill="currentColor"
+                        viewBox="0 0 50 50"
+                      >
+                        <path d="M12 23.403V23.39 10.389L11.88 10.3h-.01L9.14 8.28C7.47 7.04 5.09 7.1 3.61 8.56 2.62 9.54 2 10.9 2 12.41v3.602L12 23.403zM38 23.39v.013l10-7.391V12.41c0-1.49-.6-2.85-1.58-3.83-1.46-1.457-3.765-1.628-5.424-.403L38.12 10.3 38 10.389V23.39zM14 24.868l10.406 7.692c.353.261.836.261 1.189 0L36 24.868V11.867L25 20l-11-8.133V24.868zM38 25.889V41c0 .552.448 1 1 1h6.5c1.381 0 2.5-1.119 2.5-2.5V18.497L38 25.889zM12 25.889L2 18.497V39.5C2 40.881 3.119 42 4.5 42H11c.552 0 1-.448 1-1V25.889z"></path>
+                      </svg>
+                    </a>
+                  </li>
+                  {/* <li class="mr-5 text-xs shrink-0">
                   <a
                     class="block hover:text-zinc-200"
                     target="_blank"
@@ -359,319 +370,321 @@ const Home = () => {
                     </svg>
                   </a>
                 </li> */}
-                <li class="mr-5 text-xs shrink-0">
-                  <a
-                    class="block hover:text-zinc-200"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Instagram"
-                    title="Instagram"
-                    href="https://www.instagram.com/arskflnm/"
-                  >
-                    <span class="sr-only">Instagram</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 1000 1000"
-                      fill="currentColor"
-                      class="h-6 w-6"
-                      aria-hidden="true"
-                    >
-                      <path d="M295.42,6c-53.2,2.51-89.53,11-121.29,23.48-32.87,12.81-60.73,30-88.45,57.82S40.89,143,28.17,175.92c-12.31,31.83-20.65,68.19-23,121.42S2.3,367.68,2.56,503.46,3.42,656.26,6,709.6c2.54,53.19,11,89.51,23.48,121.28,12.83,32.87,30,60.72,57.83,88.45S143,964.09,176,976.83c31.8,12.29,68.17,20.67,121.39,23s70.35,2.87,206.09,2.61,152.83-.86,206.16-3.39S799.1,988,830.88,975.58c32.87-12.86,60.74-30,88.45-57.84S964.1,862,976.81,829.06c12.32-31.8,20.69-68.17,23-121.35,2.33-53.37,2.88-70.41,2.62-206.17s-.87-152.78-3.4-206.1-11-89.53-23.47-121.32c-12.85-32.87-30-60.7-57.82-88.45S862,40.87,829.07,28.19c-31.82-12.31-68.17-20.7-121.39-23S637.33,2.3,501.54,2.56,348.75,3.4,295.42,6m5.84,903.88c-48.75-2.12-75.22-10.22-92.86-17-23.36-9-40-19.88-57.58-37.29s-28.38-34.11-37.5-57.42c-6.85-17.64-15.1-44.08-17.38-92.83-2.48-52.69-3-68.51-3.29-202s.22-149.29,2.53-202c2.08-48.71,10.23-75.21,17-92.84,9-23.39,19.84-40,37.29-57.57s34.1-28.39,57.43-37.51c17.62-6.88,44.06-15.06,92.79-17.38,52.73-2.5,68.53-3,202-3.29s149.31.21,202.06,2.53c48.71,2.12,75.22,10.19,92.83,17,23.37,9,40,19.81,57.57,37.29s28.4,34.07,37.52,57.45c6.89,17.57,15.07,44,17.37,92.76,2.51,52.73,3.08,68.54,3.32,202s-.23,149.31-2.54,202c-2.13,48.75-10.21,75.23-17,92.89-9,23.35-19.85,40-37.31,57.56s-34.09,28.38-57.43,37.5c-17.6,6.87-44.07,15.07-92.76,17.39-52.73,2.48-68.53,3-202.05,3.29s-149.27-.25-202-2.53m407.6-674.61a60,60,0,1,0,59.88-60.1,60,60,0,0,0-59.88,60.1M245.77,503c.28,141.8,115.44,256.49,257.21,256.22S759.52,643.8,759.25,502,643.79,245.48,502,245.76,245.5,361.22,245.77,503m90.06-.18a166.67,166.67,0,1,1,167,166.34,166.65,166.65,0,0,1-167-166.34"></path>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </header>
-
-            <main className="pt-24 lg:w-[55%] lg:py-24" id="content">
-              <section
-                id="about"
-                className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-              >
-                <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
-                    About
-                  </h2>
-                </div>
-
-                <div>
-                  <p class="sr-right mb-4">
-                    Passionate Frontend Developer with 1+ year of professional
-                    experience and a Bachelor’s Degree in Computer Science.
-                    Graduate of PT Dumbways Indonesia Teknologi Fullstack
-                    Developer Bootcamp with expertise in JavaScript, TypeScript,
-                    and modern web frameworks. Skilled in building clean,
-                    user-friendly, and high-performance interfaces. Adaptive to
-                    new technologies, experienced in cross-functional
-                    collaboration, and capable of working independently or in a
-                    team environment.
-                  </p>
-
-                  <p className="sr-left">
-                    I am currently seeking opportunities to leverage my skills
-                    in a dynamic and innovative company. If you are looking for
-                    a dedicated and skilled Frontend Developer, please don't
-                    hesitate to reach me out.
-                  </p>
-
-                  <p className="sr-right">
-                    Here are a few technologies I’ve been working with recently:
-                  </p>
-
-                  <ul class="sr-left grid grid-cols-2 gap-x-1 gap-y-0 p-0 mt-2 list-none overflow-hidden max-w-sm lg:max-w-md">
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      Javascript
-                    </li>
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      Typescript
-                    </li>
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      React.Js
-                    </li>
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      Vue.Js
-                    </li>
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      Tailwind
-                    </li>
-                    <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                      Git
-                    </li>
-                  </ul>
-                </div>
-              </section>
-
-              <section
-                id="experience"
-                className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-              >
-                <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
-                    Experience
-                  </h2>
-                </div>
-
-                <div>
-                  <ol class="group/list">
-                    <li class="sr-right mb-12">
-                      <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <header
-                          class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 sm:col-span-2"
-                          aria-label="2024 to Present"
-                        >
-                          Sep 2024 - Sep 2025
-                        </header>
-                        <div class="z-10 sm:col-span-6 space-y-1">
-                          <h3 class="font-medium leading-snug text-zinc-200">
-                            Frontend Developer
-                          </h3>
-                          <div class="font-semibold text-sm leading-snug text-zinc-300">
-                            <span>PT. MNC Pictures (Klaklik)</span>
-                            <span> - </span>
-                            <span>Contract</span>
-                          </div>
-                          <div class="mt-2">
-                            <ul class="p-0 m-0 list-none">
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Maintaining and developing new features for
-                                Klaklik, an e-novel and e-comic platform, as
-                                well as Klaklik Dashboard, a platform for
-                                creators to publish their comics and novels.
-                              </li>
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Developing and integrating the eBook+ feature on
-                                RCTI+, adapting it from Klaklik.
-                              </li>
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Ensuring application stability and security
-                                through regular maintenance and debugging while
-                                optimizing performance and UI/UX to enhance user
-                                experience.
-                              </li>
-                            </ul>
-                          </div>
-                          <ul
-                            class="mt-2 flex flex-wrap justify-end"
-                            aria-label="Technologies used"
-                          >
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Vue.Js
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Vuex
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Javascript
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Css
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Firebase
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Hls.Js
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-
-                    <li class="sr-left mb-12">
-                      <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <header
-                          class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 sm:col-span-2"
-                          aria-label="2024 to Present"
-                        >
-                          Mar 2022 - Mar 2022
-                        </header>
-                        <div class="z-10 sm:col-span-6 space-y-1">
-                          <h3 class="font-medium leading-snug text-zinc-200">
-                            Programmer Internship
-                          </h3>
-                          <div class="font-semibold text-sm leading-snug text-zinc-300">
-                            <span>Mie Ayam MasBro</span>
-                            <span> - </span>
-                            <span>Internship</span>
-                          </div>
-                          <div class="mt-2">
-                            <ul class="p-0 m-0 list-none">
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Designed and developed user interface for
-                                dekstop applications using NetBeans and Java
-                                GUI.
-                              </li>
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Create monthly dining table booking report using
-                                IReport plugin.
-                              </li>
-                              <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
-                                Create a dining table booking database in my
-                                SQL.
-                              </li>
-                            </ul>
-                          </div>
-                          <ul
-                            class="mt-2 flex flex-wrap justify-end"
-                            aria-label="Technologies used"
-                          >
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Java
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Netbeans
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                MySql
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </li>
-                  </ol>
-
-                  <div className="sr-top mt-12">
+                  <li class="mr-5 text-xs shrink-0">
                     <a
-                      className="inline-flex items-baseline leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300 font-semibold group/link text-base"
+                      class="block hover:text-zinc-200"
                       target="_blank"
                       rel="noreferrer noopener"
-                      aria-label="View Full Résumé (opens in a new tab)"
-                      href="/resume.pdf"
+                      aria-label="Instagram"
+                      title="Instagram"
+                      href="https://www.instagram.com/arskflnm/"
                     >
-                      <span>
-                        View Full Résumé
-                        <span class="inline-block">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </span>
-                      </span>
+                      <span class="sr-only">Instagram</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 1000 1000"
+                        fill="currentColor"
+                        class="h-6 w-6"
+                        aria-hidden="true"
+                      >
+                        <path d="M295.42,6c-53.2,2.51-89.53,11-121.29,23.48-32.87,12.81-60.73,30-88.45,57.82S40.89,143,28.17,175.92c-12.31,31.83-20.65,68.19-23,121.42S2.3,367.68,2.56,503.46,3.42,656.26,6,709.6c2.54,53.19,11,89.51,23.48,121.28,12.83,32.87,30,60.72,57.83,88.45S143,964.09,176,976.83c31.8,12.29,68.17,20.67,121.39,23s70.35,2.87,206.09,2.61,152.83-.86,206.16-3.39S799.1,988,830.88,975.58c32.87-12.86,60.74-30,88.45-57.84S964.1,862,976.81,829.06c12.32-31.8,20.69-68.17,23-121.35,2.33-53.37,2.88-70.41,2.62-206.17s-.87-152.78-3.4-206.1-11-89.53-23.47-121.32c-12.85-32.87-30-60.7-57.82-88.45S862,40.87,829.07,28.19c-31.82-12.31-68.17-20.7-121.39-23S637.33,2.3,501.54,2.56,348.75,3.4,295.42,6m5.84,903.88c-48.75-2.12-75.22-10.22-92.86-17-23.36-9-40-19.88-57.58-37.29s-28.38-34.11-37.5-57.42c-6.85-17.64-15.1-44.08-17.38-92.83-2.48-52.69-3-68.51-3.29-202s.22-149.29,2.53-202c2.08-48.71,10.23-75.21,17-92.84,9-23.39,19.84-40,37.29-57.57s34.1-28.39,57.43-37.51c17.62-6.88,44.06-15.06,92.79-17.38,52.73-2.5,68.53-3,202-3.29s149.31.21,202.06,2.53c48.71,2.12,75.22,10.19,92.83,17,23.37,9,40,19.81,57.57,37.29s28.4,34.07,37.52,57.45c6.89,17.57,15.07,44,17.37,92.76,2.51,52.73,3.08,68.54,3.32,202s-.23,149.31-2.54,202c-2.13,48.75-10.21,75.23-17,92.89-9,23.35-19.85,40-37.31,57.56s-34.09,28.38-57.43,37.5c-17.6,6.87-44.07,15.07-92.76,17.39-52.73,2.48-68.53,3-202.05,3.29s-149.27-.25-202-2.53m407.6-674.61a60,60,0,1,0,59.88-60.1,60,60,0,0,0-59.88,60.1M245.77,503c.28,141.8,115.44,256.49,257.21,256.22S759.52,643.8,759.25,502,643.79,245.48,502,245.76,245.5,361.22,245.77,503m90.06-.18a166.67,166.67,0,1,1,167,166.34,166.65,166.65,0,0,1-167-166.34"></path>
+                      </svg>
                     </a>
+                  </li>
+                </ul>
+              </header>
+
+              <main className="pt-24 lg:w-[55%] lg:py-24" id="content">
+                <section
+                  id="about"
+                  className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+                >
+                  <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                    <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                      About
+                    </h2>
                   </div>
-                </div>
-              </section>
 
-              <section
-                id="projects"
-                className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-              >
-                <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
-                    Projects
-                  </h2>
-                </div>
+                  <div>
+                    <p class="sr-right mb-4">
+                      Passionate Frontend Developer with 1+ year of professional
+                      experience and a Bachelor’s Degree in Computer Science.
+                      Graduate of PT Dumbways Indonesia Teknologi Fullstack
+                      Developer Bootcamp with expertise in JavaScript,
+                      TypeScript, and modern web frameworks. Skilled in building
+                      clean, user-friendly, and high-performance interfaces.
+                      Adaptive to new technologies, experienced in
+                      cross-functional collaboration, and capable of working
+                      independently or in a team environment.
+                    </p>
 
-                <div>
-                  <ul className="group/list">
-                    <li className="sr-right mb-12">
-                      <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                    <p className="sr-left">
+                      I am currently seeking opportunities to leverage my skills
+                      in a dynamic and innovative company. If you are looking
+                      for a dedicated and skilled Frontend Developer, please
+                      don't hesitate to reach me out.
+                    </p>
 
-                        <div class="z-10 sm:order-2 sm:col-span-6">
-                          <h3>
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://www.klaklik.com/"
+                    <p className="sr-right">
+                      Here are a few technologies I’ve been working with
+                      recently:
+                    </p>
+
+                    <ul class="sr-left grid grid-cols-2 gap-x-1 gap-y-0 p-0 mt-2 list-none overflow-hidden max-w-sm lg:max-w-md">
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Javascript
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Typescript
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        React.Js
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Vue.Js
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Tailwind
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Git
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+
+                <section
+                  id="experience"
+                  className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+                >
+                  <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                    <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                      Experience
+                    </h2>
+                  </div>
+
+                  <div>
+                    <ol class="group/list">
+                      <li class="sr-right mb-12">
+                        <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <header
+                            class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 sm:col-span-2"
+                            aria-label="2024 to Present"
+                          >
+                            Sep 2024 - Sep 2025
+                          </header>
+                          <div class="z-10 sm:col-span-6 space-y-1">
+                            <h3 class="font-medium leading-snug text-zinc-200">
+                              Frontend Developer
+                            </h3>
+                            <div class="font-semibold text-sm leading-snug text-zinc-300">
+                              <span>PT. MNC Pictures (Klaklik)</span>
+                              <span> - </span>
+                              <span>Contract</span>
+                            </div>
+                            <div class="mt-2">
+                              <ul class="p-0 m-0 list-none">
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Maintaining and developing new features for
+                                  Klaklik, an e-novel and e-comic platform, as
+                                  well as Klaklik Dashboard, a platform for
+                                  creators to publish their comics and novels.
+                                </li>
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Developing and integrating the eBook+ feature
+                                  on RCTI+, adapting it from Klaklik.
+                                </li>
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Ensuring application stability and security
+                                  through regular maintenance and debugging
+                                  while optimizing performance and UI/UX to
+                                  enhance user experience.
+                                </li>
+                              </ul>
+                            </div>
+                            <ul
+                              class="mt-2 flex flex-wrap justify-end"
+                              aria-label="Technologies used"
                             >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                Klaklik
-                                <span class="inline-block">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Vue.Js
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Vuex
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Javascript
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Css
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Firebase
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Hls.Js
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="sr-left mb-12">
+                        <div class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <header
+                            class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500 sm:col-span-2"
+                            aria-label="2024 to Present"
+                          >
+                            Mar 2022 - Mar 2022
+                          </header>
+                          <div class="z-10 sm:col-span-6 space-y-1">
+                            <h3 class="font-medium leading-snug text-zinc-200">
+                              Programmer Internship
+                            </h3>
+                            <div class="font-semibold text-sm leading-snug text-zinc-300">
+                              <span>Mie Ayam MasBro</span>
+                              <span> - </span>
+                              <span>Internship</span>
+                            </div>
+                            <div class="mt-2">
+                              <ul class="p-0 m-0 list-none">
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Designed and developed user interface for
+                                  dekstop applications using NetBeans and Java
+                                  GUI.
+                                </li>
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Create monthly dining table booking report
+                                  using IReport plugin.
+                                </li>
+                                <li class="relative pl-[30px] mb-[5px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                                  Create a dining table booking database in my
+                                  SQL.
+                                </li>
+                              </ul>
+                            </div>
+                            <ul
+                              class="mt-2 flex flex-wrap justify-end"
+                              aria-label="Technologies used"
+                            >
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Java
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Netbeans
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  MySql
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ol>
+
+                    <div className="sr-top mt-12">
+                      <a
+                        className="inline-flex items-baseline leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300 font-semibold group/link text-base"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="View Full Résumé (opens in a new tab)"
+                        href="/resume.pdf"
+                      >
+                        <span>
+                          View Full Résumé
+                          <span class="inline-block">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                clip-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </span>
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+
+                <section
+                  id="projects"
+                  className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+                >
+                  <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                    <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                      Projects
+                    </h2>
+                  </div>
+
+                  <div>
+                    <ul className="group/list">
+                      <li className="sr-right mb-12">
+                        <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+
+                          <div class="z-10 sm:order-2 sm:col-span-6">
+                            <h3>
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Build a Microservices Library Management (opens in a new tab)"
+                                href="https://www.klaklik.com/"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  Klaklik
+                                  <span class="inline-block">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
-                          <p class="mt-2 text-sm leading-normal">
-                            An application that provides fiction content in the
-                            form of eNovels and eComics across various genres.
-                          </p>
-                          {/* <div class="relative mt-2 inline-flex items-center text-sm font-medium text-zinc-300 hover:text-cyan-300 focus-visible:text-cyan-300 space-x-3">
+                              </a>
+                            </h3>
+                            <p class="mt-2 text-sm leading-normal">
+                              An application that provides fiction content in
+                              the form of eNovels and eComics across various
+                              genres.
+                            </p>
+                            {/* <div class="relative mt-2 inline-flex items-center text-sm font-medium text-zinc-300 hover:text-cyan-300 focus-visible:text-cyan-300 space-x-3">
                         <div class="inline-flex items-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -702,142 +715,142 @@ const Home = () => {
                           <span>0</span>
                         </div>
                       </div> */}
-                          <ul
-                            class="mt-2 flex flex-wrap"
-                            aria-label="Technologies used:"
-                          >
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Javascript
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Vue.Js
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Css
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Vuex
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Hls.Js
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-
-                        <img
-                          alt="Snapshot Klaklik"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
-                          src={Klaklik}
-                          style={{ color: "transparent" }}
-                        />
-                      </div>
-                    </li>
-
-                    <li className="sr-left mb-12">
-                      <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-
-                        <div class="z-10 sm:order-2 sm:col-span-6">
-                          <h3>
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://test.movielandlido.com/"
+                            <ul
+                              class="mt-2 flex flex-wrap"
+                              aria-label="Technologies used:"
                             >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                MNC Movieland
-                                <span class="inline-block">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
-                                </span>
-                              </span>
-                            </a>
-                          </h3>
-                          <p class="mt-2 text-sm leading-normal">
-                            Movieland is one of the Special Economic Zones (SEZ)
-                            of the Creative Economy Hub located in MNC Lido
-                            City, Bogor. This area serves as the largest film
-                            and television series production center in Southeast
-                            Asia, integrated with various facilities and
-                            equipment of international standards.
-                          </p>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Javascript
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Vue.Js
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Css
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Vuex
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Hls.Js
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
 
-                          <ul
-                            class="mt-2 flex flex-wrap"
-                            aria-label="Technologies used:"
-                          >
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Html
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Css
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Javascript
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Blade
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                PHP
-                              </div>
-                            </li>
-                          </ul>
+                          <img
+                            alt="Snapshot Klaklik"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
+                            src={Klaklik}
+                            style={{ color: "transparent" }}
+                          />
                         </div>
+                      </li>
 
-                        <img
-                          alt="Snapshot Movieland"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
-                          src={Movieland}
-                          style={{ color: "transparent" }}
-                        />
-                      </div>
-                    </li>
+                      <li className="sr-left mb-12">
+                        <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
-                    {/* <li className="mb-12">
+                          <div class="z-10 sm:order-2 sm:col-span-6">
+                            <h3>
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Build a Microservices Library Management (opens in a new tab)"
+                                href="https://test.movielandlido.com/"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  MNC Movieland
+                                  <span class="inline-block">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
+                                </span>
+                              </a>
+                            </h3>
+                            <p class="mt-2 text-sm leading-normal">
+                              Movieland is one of the Special Economic Zones
+                              (SEZ) of the Creative Economy Hub located in MNC
+                              Lido City, Bogor. This area serves as the largest
+                              film and television series production center in
+                              Southeast Asia, integrated with various facilities
+                              and equipment of international standards.
+                            </p>
+
+                            <ul
+                              class="mt-2 flex flex-wrap"
+                              aria-label="Technologies used:"
+                            >
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Html
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Css
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Javascript
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Blade
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  PHP
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <img
+                            alt="Snapshot Movieland"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
+                            src={Movieland}
+                            style={{ color: "transparent" }}
+                          />
+                        </div>
+                      </li>
+
+                      {/* <li className="mb-12">
                       <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
                         <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
@@ -906,451 +919,452 @@ const Home = () => {
                       </div>
                     </li> */}
 
-                    <li className="sr-right mb-12">
-                      <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                      <li className="sr-right mb-12">
+                        <div className="group relative grid gap-4 pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
 
-                        <div class="z-10 sm:order-2 sm:col-span-6">
-                          <h3>
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="Build a Microservices Library Management (opens in a new tab)"
-                              href="https://github.com/ariskiflan/fe-thread-app"
-                            >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                Circle App
-                                <span class="inline-block">
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                          <div class="z-10 sm:order-2 sm:col-span-6">
+                            <h3>
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-zinc-200 hover:text-cyan-300 focus-visible:text-cyan-300  group/link text-base"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="Build a Microservices Library Management (opens in a new tab)"
+                                href="https://github.com/ariskiflan/fe-thread-app"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  Circle App
+                                  <span class="inline-block">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
-                          <p class="mt-2 text-sm leading-normal">
-                            Circle App is a web-based social media application
-                            inspired by Twitter. It is built with React,
-                            Express, and styled using Chakra UI. Circle App
-                            allows users to easily share updates, connect with
-                            others, upload images and text, and follow their
-                            favorite accounts. users can also engage in
-                            interaction by likes, comments, and replying to
-                            posts.
-                          </p>
+                              </a>
+                            </h3>
+                            <p class="mt-2 text-sm leading-normal">
+                              Circle App is a web-based social media application
+                              inspired by Twitter. It is built with React,
+                              Express, and styled using Chakra UI. Circle App
+                              allows users to easily share updates, connect with
+                              others, upload images and text, and follow their
+                              favorite accounts. users can also engage in
+                              interaction by likes, comments, and replying to
+                              posts.
+                            </p>
 
-                          <ul
-                            class="mt-2 flex flex-wrap"
-                            aria-label="Technologies used:"
-                          >
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                React.js
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Typescript
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Redux
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Chakra UI
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Express.Js
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Prisma
-                              </div>
-                            </li>
-                            <li class="mr-1.5 mt-2">
-                              <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
-                                Postgre SQL
-                              </div>
-                            </li>
-                          </ul>
+                            <ul
+                              class="mt-2 flex flex-wrap"
+                              aria-label="Technologies used:"
+                            >
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  React.js
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Typescript
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Redux
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Chakra UI
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Express.Js
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Prisma
+                                </div>
+                              </li>
+                              <li class="mr-1.5 mt-2">
+                                <div class="flex items-center rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-medium leading-5 text-cyan-300">
+                                  Postgre SQL
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <img
+                            alt="Snapshot Circle App"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
+                            src={Circle}
+                            style={{ color: "transparent" }}
+                          />
                         </div>
+                      </li>
+                    </ul>
 
-                        <img
-                          alt="Snapshot Circle App"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          className="rounded border-2 border-zinc-200/10 transition group-hover:border-zinc-200/30 sm:order-1 sm:col-span-2 sm:translate-y-1"
-                          src={Circle}
-                          style={{ color: "transparent" }}
-                        />
-                      </div>
-                    </li>
-                  </ul>
-
-                  <div className="sr-top mt-12">
-                    <Link
-                      className="inline-flex items-center leading-tight text-zinc-200 font-semibold group"
-                      aria-label="View Full Project Archive"
-                      to="/project"
-                    >
-                      <span>
-                        <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none">
-                          View Full Project Archive
+                    <div className="sr-top mt-12">
+                      <Link
+                        className="inline-flex items-center leading-tight text-zinc-200 font-semibold group"
+                        aria-label="View Full Project Archive"
+                        to="/project"
+                      >
+                        <span>
+                          <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none">
+                            View Full Project Archive
+                          </span>
+                          <span class="whitespace-nowrap">
+                            <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none"></span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              class="ml-1 inline-block h-4 w-4 rotate-[45deg] shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none"
+                              aria-hidden="true"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                clip-rule="evenodd"
+                              ></path>
+                            </svg>
+                          </span>
                         </span>
-                        <span class="whitespace-nowrap">
-                          <span class="border-b border-transparent pb-px transition group-hover:border-cyan-300 motion-reduce:transition-none"></span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                            class="ml-1 inline-block h-4 w-4 rotate-[45deg] shrink-0 -translate-y-px transition-transform group-hover:translate-x-2 group-focus-visible:translate-x-2 motion-reduce:transition-none"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </span>
-                      </span>
-                    </Link>
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </section>
+                </section>
 
-              <section
-                id="certificate"
-                class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
-                aria-label="Blog posts"
-              >
-                <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
-                    Certificate
-                  </h2>
-                </div>
+                <section
+                  id="certificate"
+                  class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+                  aria-label="Blog posts"
+                >
+                  <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                    <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                      Certificate
+                    </h2>
+                  </div>
 
-                <div>
-                  <ul className="group/list">
-                    <li class="sr-right mb-12">
-                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <img
-                          alt="Accessibility icon"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
-                          style={{ color: "transparent" }}
-                          src={ReactJsImg}
-                        />
-                        <div class="z-10 col-span-6">
-                          <p class="-mt-1 text-sm font-semibold leading-6">
-                            2024
-                          </p>
-                          <h3 class="-mt-1">
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                              href="/certificate-reactjs-udemy.pdf"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
-                            >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                <span class="inline-block">
-                                  React - The Completed Guide 2024 (Incl.
-                                  Next.Js, Redux)
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                  <div>
+                    <ul className="group/list">
+                      <li class="sr-right mb-12">
+                        <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <img
+                            alt="Accessibility icon"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                            style={{ color: "transparent" }}
+                            src={ReactJsImg}
+                          />
+                          <div class="z-10 col-span-6">
+                            <p class="-mt-1 text-sm font-semibold leading-6">
+                              2024
+                            </p>
+                            <h3 class="-mt-1">
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                                href="/certificate-reactjs-udemy.pdf"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  <span class="inline-block">
+                                    React - The Completed Guide 2024 (Incl.
+                                    Next.Js, Redux)
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
+                              </a>
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
 
-                    <li class="sr-left mb-12">
-                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <img
-                          alt="Accessibility icon"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
-                          style={{ color: "transparent" }}
-                          src={DW}
-                        />
-                        <div class="z-10 col-span-6">
-                          <p class="-mt-1 text-sm font-semibold leading-6">
-                            2024
-                          </p>
-                          <h3 class="-mt-1">
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                              href="/certificate-dumbways.pdf"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
-                            >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                <span class="inline-block">
-                                  Fullstack Developer Bootcamp By PT. Dumbways
-                                  Indonesia Teknologi
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                      <li class="sr-left mb-12">
+                        <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <img
+                            alt="Accessibility icon"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                            style={{ color: "transparent" }}
+                            src={DW}
+                          />
+                          <div class="z-10 col-span-6">
+                            <p class="-mt-1 text-sm font-semibold leading-6">
+                              2024
+                            </p>
+                            <h3 class="-mt-1">
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                                href="/certificate-dumbways.pdf"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  <span class="inline-block">
+                                    Fullstack Developer Bootcamp By PT. Dumbways
+                                    Indonesia Teknologi
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
+                              </a>
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
 
-                    <li class="sr-right mb-12">
-                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <img
-                          alt="Accessibility icon"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
-                          style={{ color: "transparent" }}
-                          src={Js}
-                        />
-                        <div class="z-10 col-span-6">
-                          <p class="-mt-1 text-sm font-semibold leading-6">
-                            2024
-                          </p>
-                          <h3 class="-mt-1">
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                              href="/certificate-javascript-udemy.pdf"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
-                            >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                <span class="inline-block">
-                                  The Completed Javascript Course 2024: From
-                                  Zero to Expert!
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                      <li class="sr-right mb-12">
+                        <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <img
+                            alt="Accessibility icon"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                            style={{ color: "transparent" }}
+                            src={Js}
+                          />
+                          <div class="z-10 col-span-6">
+                            <p class="-mt-1 text-sm font-semibold leading-6">
+                              2024
+                            </p>
+                            <h3 class="-mt-1">
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                                href="/certificate-javascript-udemy.pdf"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  <span class="inline-block">
+                                    The Completed Javascript Course 2024: From
+                                    Zero to Expert!
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
+                              </a>
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
 
-                    <li class="sr-left mb-12">
-                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
-                        <img
-                          alt="Accessibility icon"
-                          loading="lazy"
-                          width="200"
-                          height="48"
-                          decoding="async"
-                          data-nimg="1"
-                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
-                          style={{ color: "transparent" }}
-                          src={HtmlCss}
-                        />
-                        <div class="z-10 col-span-6">
-                          <p class="-mt-1 text-sm font-semibold leading-6">
-                            2023
-                          </p>
-                          <h3 class="-mt-1">
-                            <a
-                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
-                              href="/certificate-html-css-udemy.pdf"
-                              target="_blank"
-                              rel="noreferrer noopener"
-                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
-                            >
-                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
-                              <span>
-                                <span class="inline-block">
-                                  Build responsive Real-word Websites With HTML
-                                  And CSS
-                                  <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
-                                    aria-hidden="true"
-                                  >
-                                    <path
-                                      fill-rule="evenodd"
-                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                      clip-rule="evenodd"
-                                    ></path>
-                                  </svg>
+                      <li class="sr-left mb-12">
+                        <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                          <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                          <img
+                            alt="Accessibility icon"
+                            loading="lazy"
+                            width="200"
+                            height="48"
+                            decoding="async"
+                            data-nimg="1"
+                            class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                            style={{ color: "transparent" }}
+                            src={HtmlCss}
+                          />
+                          <div class="z-10 col-span-6">
+                            <p class="-mt-1 text-sm font-semibold leading-6">
+                              2023
+                            </p>
+                            <h3 class="-mt-1">
+                              <a
+                                class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                                href="/certificate-html-css-udemy.pdf"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                              >
+                                <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                                <span>
+                                  <span class="inline-block">
+                                    Build responsive Real-word Websites With
+                                    HTML And CSS
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                      class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        fill-rule="evenodd"
+                                        d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                        clip-rule="evenodd"
+                                      ></path>
+                                    </svg>
+                                  </span>
                                 </span>
-                              </span>
-                            </a>
-                          </h3>
+                              </a>
+                            </h3>
+                          </div>
                         </div>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </section>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
 
-              <section>
-                <div className="sr-bottom scroll-pt-10 lg:scroll-pt-24 text-sm">
-                  <div className="relative transition-all opacity-100 text-zinc-300">
-                    <div className="absolute -inset-x-4 -inset-y-4 z-0  rounded-lg transition motion-reduce:transition-none  block bg-black/20 shadow-[inset_0_1px_0_0_rgba(rgba(160, 188, 227, 1))] drop-shadow-xl"></div>
-                    <p className="before:content-['“'] before:text-cyan-400 before:text-2xl before:mr-1 after:content-['”'] after:text-cyan-400 after:text-2xl after:ml-1">
-                      Is there anything I can assist you with? My inbox and
-                      social media are always open—please don’t hesitate to
-                      reach out. I'll do my best.
+                <section>
+                  <div className="sr-bottom scroll-pt-10 lg:scroll-pt-24 text-sm">
+                    <div className="relative transition-all opacity-100 text-zinc-300">
+                      <div className="absolute -inset-x-4 -inset-y-4 z-0  rounded-lg transition motion-reduce:transition-none  block bg-black/20 shadow-[inset_0_1px_0_0_rgba(rgba(160, 188, 227, 1))] drop-shadow-xl"></div>
+                      <p className="before:content-['“'] before:text-cyan-400 before:text-2xl before:mr-1 after:content-['”'] after:text-cyan-400 after:text-2xl after:ml-1">
+                        Is there anything I can assist you with? My inbox and
+                        social media are always open—please don’t hesitate to
+                        reach out. I'll do my best.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="text-center space-y-4 my-16 lg:my-20">
+                    <p className="sr-top text-gray text-xs md:text-sm">
+                      warm greetings from me:
                     </p>
+                    <h3 className="sr-bottom font-great-vibes text-2xl md:text-3xl lg:text-4xl inline-block border-b border-primary">
+                      ArisKiflan
+                    </h3>
                   </div>
-                </div>
 
-                <div className="text-center space-y-4 my-16 lg:my-20">
-                  <p className="sr-top text-gray text-xs md:text-sm">
-                    warm greetings from me:
-                  </p>
-                  <h3 className="sr-bottom font-great-vibes text-2xl md:text-3xl lg:text-4xl inline-block border-b border-primary">
-                    ArisKiflan
-                  </h3>
-                </div>
-
-                <footer className="sr-bottom max-w-lg pb-16 text-sm text-zinc-500 sm:pb-0">
-                  <p>
-                    Inspired by{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://brittanychiang.com/"
-                    >
-                      Brittany Chiang's Website
-                    </a>
-                    . Loosely designed in{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://www.figma.com/"
-                    >
-                      Figma
-                    </a>{" "}
-                    and coded in{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://code.visualstudio.com/"
-                    >
-                      Visual Studio Code
-                    </a>
-                    . Built with{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://react.dev/blog/2023/03/16/introducing-react-dev"
-                    >
-                      React.js
-                    </a>{" "}
-                    and{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://tailwindcss.com/"
-                    >
-                      Tailwind CSS
-                    </a>
-                    , deployed with{" "}
-                    <a
-                      className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      aria-label="advertising agency (opens in a new tab)"
-                      href="https://www.netlify.com/"
-                    >
-                      Netlify
-                    </a>
-                  </p>
-                </footer>
-              </section>
-            </main>
+                  <footer className="sr-bottom max-w-lg pb-16 text-sm text-zinc-500 sm:pb-0">
+                    <p>
+                      Inspired by{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://brittanychiang.com/"
+                      >
+                        Brittany Chiang's Website
+                      </a>
+                      . Loosely designed in{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://www.figma.com/"
+                      >
+                        Figma
+                      </a>{" "}
+                      and coded in{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://code.visualstudio.com/"
+                      >
+                        Visual Studio Code
+                      </a>
+                      . Built with{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://react.dev/blog/2023/03/16/introducing-react-dev"
+                      >
+                        React.js
+                      </a>{" "}
+                      and{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://tailwindcss.com/"
+                      >
+                        Tailwind CSS
+                      </a>
+                      , deployed with{" "}
+                      <a
+                        className="font-bold text-highlight hover:text-cyan-300 focus-visible:text-cyan-300"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        aria-label="advertising agency (opens in a new tab)"
+                        href="https://www.netlify.com/"
+                      >
+                        Netlify
+                      </a>
+                    </p>
+                  </footer>
+                </section>
+              </main>
+            </div>
           </div>
         </div>
       </body>
