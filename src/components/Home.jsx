@@ -3,12 +3,36 @@ import Movieland from "../assets/img/movieland.png";
 import Circle from "../assets/img/circle.png";
 import Portfolio from "../assets/img/portfolio.png";
 import { Link } from "react-router";
+import Js from "../assets/img/js.png";
+import ReactJsImg from "../assets/img/react.png";
+import HtmlCss from "../assets/img/htmlcss.png";
+import DW from "../assets/img/dw.png";
 
 import ScrollReveal from "scrollreveal";
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+  const [activeSection, setActiveSection] = useState("about");
+
   useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-50% 0px -50% 0px", // fokus deteksi di tengah layar
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => sections.forEach((section) => observer.unobserve(section));
+
     ScrollReveal().reveal(".sr-bottom", {
       duration: 1000,
       origin: "bottom",
@@ -69,7 +93,7 @@ const Home = () => {
                   I am Passionate about Web Development
                 </p>
 
-                <nav
+                {/* <nav
                   className="nav hidden lg:block"
                   aria-label="In-page jump links"
                 >
@@ -107,17 +131,128 @@ const Home = () => {
                         </span>
                       </a>
                     </li>
-                    {/* <li>
+                    <li>
                       <a
                         className="group flex items-center py-3 "
-                        href="#projects"
+                        href="#certificate"
                       >
                         <span className="nav-indicator mr-4 h-px w-8 bg-slate-600 transition-all group-hover:w-16 group-hover:bg-slate-200 group-focus-visible:w-16 group-focus-visible:bg-slate-200 motion-reduce:transition-none"></span>
-                        <span className="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
-                          certificate
+                        <span className="sr-bottom nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200 group-focus-visible:text-slate-200">
+                          Certificate
                         </span>
                       </a>
-                    </li> */}
+                    </li>
+                  </ul>
+                </nav> */}
+
+                <nav
+                  className="nav hidden lg:block"
+                  aria-label="In-page jump links"
+                >
+                  <ul className="mt-16 w-max">
+                    <li>
+                      <a
+                        href="#about"
+                        className={`group flex items-center py-3 ${
+                          activeSection === "about" ? "active" : ""
+                        }`}
+                      >
+                        <span
+                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                            activeSection === "about"
+                              ? "w-16 bg-slate-200"
+                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                          }`}
+                        ></span>
+                        <span
+                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                            activeSection === "about"
+                              ? "text-slate-200"
+                              : "text-slate-500 group-hover:text-slate-200"
+                          }`}
+                        >
+                          About
+                        </span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href="#experience"
+                        className={`group flex items-center py-3 ${
+                          activeSection === "experience" ? "active" : ""
+                        }`}
+                      >
+                        <span
+                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                            activeSection === "experience"
+                              ? "w-16 bg-slate-200"
+                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                          }`}
+                        ></span>
+                        <span
+                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                            activeSection === "experience"
+                              ? "text-slate-200"
+                              : "text-slate-500 group-hover:text-slate-200"
+                          }`}
+                        >
+                          Experience
+                        </span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href="#projects"
+                        className={`group flex items-center py-3 ${
+                          activeSection === "projects" ? "active" : ""
+                        }`}
+                      >
+                        <span
+                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                            activeSection === "projects"
+                              ? "w-16 bg-slate-200"
+                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                          }`}
+                        ></span>
+                        <span
+                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                            activeSection === "projects"
+                              ? "text-slate-200"
+                              : "text-slate-500 group-hover:text-slate-200"
+                          }`}
+                        >
+                          Projects
+                        </span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a
+                        href="#certificate"
+                        className={`group flex items-center py-3 ${
+                          activeSection === "certificate" ? "active" : ""
+                        }`}
+                      >
+                        <span
+                          className={`nav-indicator mr-4 h-px transition-all motion-reduce:transition-none ${
+                            activeSection === "certificate"
+                              ? "w-16 bg-slate-200"
+                              : "w-8 bg-slate-600 group-hover:w-16 group-hover:bg-slate-200"
+                          }`}
+                        ></span>
+                        <span
+                          className={`nav-text text-xs font-bold uppercase tracking-widest ${
+                            activeSection === "certificate"
+                              ? "text-slate-200"
+                              : "text-slate-500 group-hover:text-slate-200"
+                          }`}
+                        >
+                          Certificate
+                        </span>
+                      </a>
+                    </li>
                   </ul>
                 </nav>
               </div>
@@ -902,6 +1037,230 @@ const Home = () => {
                       </span>
                     </Link>
                   </div>
+                </div>
+              </section>
+
+              <section
+                id="certificate"
+                class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+                aria-label="Blog posts"
+              >
+                <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-zinc-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                  <h2 class="sr-top text-lg font-bold uppercase tracking-widest text-zinc-200 lg:sr-only">
+                    Certificate
+                  </h2>
+                </div>
+
+                <div>
+                  <ul className="group/list">
+                    <li class="sr-right mb-12">
+                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                        <img
+                          alt="Accessibility icon"
+                          loading="lazy"
+                          width="200"
+                          height="48"
+                          decoding="async"
+                          data-nimg="1"
+                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                          style={{ color: "transparent" }}
+                          src={ReactJsImg}
+                        />
+                        <div class="z-10 col-span-6">
+                          <p class="-mt-1 text-sm font-semibold leading-6">
+                            2024
+                          </p>
+                          <h3 class="-mt-1">
+                            <a
+                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                              href="/certificate-reactjs-udemy.pdf"
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                            >
+                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                              <span>
+                                <span class="inline-block">
+                                  React - The Completed Guide 2024 (Incl.
+                                  Next.Js, Redux)
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </a>
+                          </h3>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="sr-left mb-12">
+                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                        <img
+                          alt="Accessibility icon"
+                          loading="lazy"
+                          width="200"
+                          height="48"
+                          decoding="async"
+                          data-nimg="1"
+                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                          style={{ color: "transparent" }}
+                          src={DW}
+                        />
+                        <div class="z-10 col-span-6">
+                          <p class="-mt-1 text-sm font-semibold leading-6">
+                            2024
+                          </p>
+                          <h3 class="-mt-1">
+                            <a
+                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                              href="/certificate-dumbways.pdf"
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                            >
+                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                              <span>
+                                <span class="inline-block">
+                                  Fullstack Developer Bootcamp By PT. Dumbways
+                                  Indonesia Teknologi
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </a>
+                          </h3>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="sr-right mb-12">
+                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                        <img
+                          alt="Accessibility icon"
+                          loading="lazy"
+                          width="200"
+                          height="48"
+                          decoding="async"
+                          data-nimg="1"
+                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                          style={{ color: "transparent" }}
+                          src={Js}
+                        />
+                        <div class="z-10 col-span-6">
+                          <p class="-mt-1 text-sm font-semibold leading-6">
+                            2024
+                          </p>
+                          <h3 class="-mt-1">
+                            <a
+                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                              href="/certificate-javascript-udemy.pdf"
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                            >
+                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                              <span>
+                                <span class="inline-block">
+                                  The Completed Javascript Course 2024: From
+                                  Zero to Expert!
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </a>
+                          </h3>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="sr-left mb-12">
+                      <div class="group relative grid grid-cols-8 gap-4 transition-all sm:items-center sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
+                        <div class="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-zinc-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg"></div>
+                        <img
+                          alt="Accessibility icon"
+                          loading="lazy"
+                          width="200"
+                          height="48"
+                          decoding="async"
+                          data-nimg="1"
+                          class="aspect-video z-10 col-span-2 rounded border-2 border-slate-200/10 transition group-hover:border-slate-200/30 sm:col-span-2"
+                          style={{ color: "transparent" }}
+                          src={HtmlCss}
+                        />
+                        <div class="z-10 col-span-6">
+                          <p class="-mt-1 text-sm font-semibold leading-6">
+                            2023
+                          </p>
+                          <h3 class="-mt-1">
+                            <a
+                              class="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300  group/link text-base"
+                              href="/certificate-html-css-udemy.pdf"
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              aria-label="5 Common Accessibility Pitfalls and How to Avoid Them (opens in a new tab)"
+                            >
+                              <span class="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
+                              <span>
+                                <span class="inline-block">
+                                  Build responsive Real-word Websites With HTML
+                                  And CSS
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    class="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </span>
+                              </span>
+                            </a>
+                          </h3>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </section>
 
