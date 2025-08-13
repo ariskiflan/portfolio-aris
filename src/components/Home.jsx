@@ -444,6 +444,12 @@ const Home = () => {
                         Vue.Js
                       </li>
                       <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Vuex
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
+                        Redux Toolkit
+                      </li>
+                      <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
                         Tailwind
                       </li>
                       <li class="relative pl-[30px] before:content-['▹'] before:absolute before:left-0 before:text-green-200">
